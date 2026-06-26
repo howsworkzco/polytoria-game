@@ -546,6 +546,10 @@ public sealed partial class Player : NPC
 	public override void Process(double delta)
 	{
 		base.Process(delta);
+		if (!Root.Network.IsServer)
+		{
+			UpdateCamera(delta);
+		}
 		if (!IsLocal)
 		{
 			UpdateTransformTick(delta);
@@ -718,8 +722,6 @@ public sealed partial class Player : NPC
 			Character?.Animator?.StopAnimation();
 		}
 
-		// Update camera right after position set
-		UpdateCamera(delta);
 		AfkTick(delta);
 
 		ApplyPushForce();
