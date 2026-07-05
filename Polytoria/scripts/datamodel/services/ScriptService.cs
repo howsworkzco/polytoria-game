@@ -169,6 +169,7 @@ public sealed partial class ScriptService : Instance
 			{ "Presence", root.Presence },
 			{ "Preferences", root.Preferences },
 			{ "Worlds", root.Worlds },
+			{ "Hooks", root.Hooks }
 		};
 
 		if (script != null)
@@ -534,9 +535,9 @@ public sealed partial class ScriptService : Instance
 		if (method.ReturnType == typeof(Task)) return true;
 		Type attType = typeof(AsyncStateMachineAttribute);
 
-		// Obtain the custom attribute for the method. 
-		// The value returned contains the StateMachineType property. 
-		// Null is returned if the attribute isn't present for the method. 
+		// Obtain the custom attribute for the method.
+		// The value returned contains the StateMachineType property.
+		// Null is returned if the attribute isn't present for the method.
 		AsyncStateMachineAttribute? attrib = (AsyncStateMachineAttribute?)method.GetCustomAttribute(attType);
 
 		return attrib != null;
@@ -597,7 +598,7 @@ public sealed partial class ScriptService : Instance
 		return cacheData;
 	}
 
-	// --------------- HANDLE INSTANCE FOR TYPES --------------- 
+	// --------------- HANDLE INSTANCE FOR TYPES ---------------
 	internal static object CreateInstanceForType(Type targetType)
 	{
 		// Instance types
